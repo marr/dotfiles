@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='scp://vm/orion/orion-drupal/sites/all/modules/views/includes/'
+let g:netrw_dirhist_2='scp://vm/orion/modules/'
+let g:netrw_dirhist_3='scp://vm/orion/modules/orion_compiler/'
+let g:netrw_dirhist_4='scp://vm/orion/modules/orion_compiler/lib/'
+let g:netrw_dirhist_5='scp://vm/orion/modules/orion_roles/'
+let g:netrw_dirhist_6='/Users/dmarr'
+let g:netrw_dirhist_7='/Users/dmarr/Orion/orion/settings'
