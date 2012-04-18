@@ -133,8 +133,7 @@ if [ "$LOGNAME" = "root" ]; then
     COLOR1="${RED}"
     COLOR2="${BROWN}"
     P="#"
-elif hostname | grep -q 'github\.com'; then
-    GITHUB=yep
+elif hostname | grep -q 'orion'; then
     COLOR1="\[\e[0;94m\]"
     COLOR2="\[\e[0;92m\]"
     P="\$"
