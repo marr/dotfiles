@@ -270,8 +270,19 @@ map ,w :call Browser ()<CR>
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
-map ,s :call StripWhitespace ()<CR>
 
+" Toggle mouse for easier copy/pasting
+map ,s :call StripWhitespace ()<CR>
+fun! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo 'mouse='
+  else
+    set mouse=a     
+    echo 'mouse=a'
+  endif
+endf
+map <F6> :call ToggleMouse()<CR>
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
