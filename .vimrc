@@ -1,7 +1,6 @@
 " ---------------------------------------------------------------------------
 " General
 " ---------------------------------------------------------------------------
-
 set nocompatible                      " essential
 set history=1000                      " lots of command line history
 set cf                                " error files / jumping
@@ -11,7 +10,15 @@ set viminfo='1000,f1,:100,@100,/20
 set modeline                          " make sure modeline support is enabled
 set autoread                          " reload files (no local changes only)
 set tabpagemax=50                     " open 50 tabs max
-set mouse=a
+set listchars=trail:.,tab:▸\ ,eol:⤦   " line endings and trailing whitespace
+set clipboard=unnamedplus
+
+" ----------------------------------------------------------------------------
+" Leader modes
+" ----------------------------------------------------------------------------
+
+let mapleader = ","
+nmap <leader>l :set list!<CR>
 
 "-------------------------------------------------------
 " STATUSBAR
@@ -71,14 +78,10 @@ endif
 highlight Comment         ctermfg=DarkGrey guifg=#444444
 highlight StatusLineNC    ctermfg=Black ctermbg=DarkGrey cterm=bold
 highlight StatusLine      ctermbg=Black ctermfg=LightGrey
+highlight SpecialKey      ctermfg=DarkGray ctermbg=Black
 
-" ----------------------------------------------------------------------------
-"   Highlight Trailing Whitespace
-" ----------------------------------------------------------------------------
-
-set list listchars=trail:.,tab:▸\ ,eol:⤦
-nmap <leader>l :set list!<CR>
-highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+" Tags
+set tags+=~/.orion-tags
 
 " ----------------------------------------------------------------------------
 "  Backups
@@ -91,7 +94,6 @@ set backupdir=$HOME/.vim/backup        " store backups under ~/.vim/backup
 set backupcopy=yes                     " keep attributes of original file
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
-
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -140,9 +142,6 @@ set virtualedit=block      " allow virtual edit in visual block ..
 " ----------------------------------------------------------------------------
 "  Mappings
 " ----------------------------------------------------------------------------
-
-" remap <LEADER> to ',' (instead of '\')
-let mapleader = ","
 
 " quickfix mappings
 map <F7>  :cn<CR>
@@ -270,9 +269,9 @@ map ,w :call Browser ()<CR>
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
+map <leader>s :call StripWhitespace ()<CR>
 
 " Toggle mouse for easier copy/pasting
-map ,s :call StripWhitespace ()<CR>
 fun! ToggleMouse()
   if &mouse == 'a'
     set mouse=

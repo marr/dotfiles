@@ -4,6 +4,7 @@
 "
 winpos 0 0
 colorscheme solarized 
+set background=light
 
 set gfn=DejaVu\ Sans\ Mono:h13
 set anti               " antialiasing
