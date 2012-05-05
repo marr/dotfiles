@@ -356,3 +356,6 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 }
 
 # vim: ts=4 sts=4 shiftwidth=4 expandtab
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+alias ta='ssh -t dmarr-orion.dev.say tmux attach'
