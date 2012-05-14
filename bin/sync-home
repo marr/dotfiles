@@ -39,6 +39,9 @@ for host in "$@"; do
 - /.vim/backup/**
 + /.vim/**
 
++ /.irssi
++ /.irssi/**
+
 + /bin
 + /bin/ack
 + /bin/lgrep
