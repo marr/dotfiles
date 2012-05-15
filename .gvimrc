@@ -49,5 +49,3 @@ nmap <d-9> 9gt
 " -----------------------------------------------------------
 "
 highlight SpecialKey    guifg=#222222 guibg=#000000
-highlight StatusLineNC  guifg=#444444 guibg=#222222
-highlight StatusLine    guifg=#AAAACC guibg=#222222
