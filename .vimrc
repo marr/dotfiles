@@ -11,7 +11,6 @@ set modeline                          " make sure modeline support is enabled
 set autoread                          " reload files (no local changes only)
 set tabpagemax=50                     " open 50 tabs max
 set listchars=trail:.,tab:▸\ ,eol:⤦   " line endings and trailing whitespace
-set clipboard=unnamedplus
 
 " ----------------------------------------------------------------------------
 " Leader modes
@@ -148,6 +147,8 @@ map <F7>  :cn<CR>
 map <S-F7> :cp<CR>
 map <A-F7> :copen<CR>
 
+:nnoremap <F8> :NERDTreeToggle<CR>
+
 " emacs movement keybindings in insert mode
 imap <C-a> <C-o>0
 imap <C-e> <C-o>$
@@ -181,6 +182,9 @@ cnoremap <Right> <Space><BS><Right>
 " jump to last position of buffer when opening
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                          \ exe "normal g'\"" | endif
+
+" Start NERDTree when vim is opened
+" autocmd VimEnter * NERDTree
 
 " don't use cindent for javascript
 autocmd FileType javascript setlocal nocindent

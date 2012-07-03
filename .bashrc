@@ -358,4 +358,7 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 # vim: ts=4 sts=4 shiftwidth=4 expandtab
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-alias ta='ssh -t dmarr-orion.dev.say tmux attach'
+alias ack='ack -ai'
+alias t='ssh -t dm-orion tmux'
+alias ta='ssh -t dm-orion tmux attach'
+alias te='ssh -t dm-orion tail -f orion/orion-ctl/logs/php_errors.log'
