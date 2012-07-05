@@ -338,6 +338,9 @@ man () {
 test -r ~/.shenv &&
 . ~/.shenv
 
+# Stop XON/XOFF from stopping flow http://blog.sanctum.geek.nz/tag/terminal/
+stty -ixon
+
 # condense PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
