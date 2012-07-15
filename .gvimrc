@@ -4,9 +4,10 @@
 "
 winpos 0 0
 colorscheme solarized 
-set background=light
+"set background=light
 
-set gfn=DejaVu\ Sans\ Mono:h13
+"set gfn=DejaVu\ Sans\ Mono:h13
+set gfn=Consolas:h13
 set anti               " antialiasing
 set guioptions=gemc
 set columns=100
