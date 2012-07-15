@@ -8,6 +8,9 @@
 : ${LOGNAME=$(id -un)}
 : ${UNAME=$(uname)}
 
+# times in history
+HISTTIMEFORMAT="%Y%m%d %H:%M:%S "
+
 # complete hostnames from this file
 : ${HOSTFILE=~/.ssh/known_hosts}
 
@@ -34,6 +37,9 @@ shopt -s interactive_comments >/dev/null 2>&1
 shopt -u mailwarn >/dev/null 2>&1
 shopt -s no_empty_cmd_completion >/dev/null 2>&1
 
+# Stop XON/XOFF from stopping flow http://blog.sanctum.geek.nz/tag/terminal/
+stty -ixon
+
 # fuck that you have new mail shit
 unset MAILCHECK
 
@@ -49,7 +55,8 @@ umask 0022
 
 # we want the various sbins on the path along with /usr/local/bin
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="/usr/local/bin:$PATH"
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH="/usr/local/bin:/usr/local/share/python:$PATH"
 
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
@@ -338,9 +345,6 @@ man () {
 test -r ~/.shenv &&
 . ~/.shenv
 
-# Stop XON/XOFF from stopping flow http://blog.sanctum.geek.nz/tag/terminal/
-stty -ixon
-
 # condense PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
@@ -360,7 +364,6 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 
 # vim: ts=4 sts=4 shiftwidth=4 expandtab
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 alias ack='ack -ai'
 alias t='ssh -t dm-orion tmux'
 alias ta='ssh -t dm-orion tmux attach'
