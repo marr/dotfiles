@@ -38,7 +38,7 @@ shopt -u mailwarn >/dev/null 2>&1
 shopt -s no_empty_cmd_completion >/dev/null 2>&1
 
 # Stop XON/XOFF from stopping flow http://blog.sanctum.geek.nz/tag/terminal/
-stty -ixon
+[ -t 0 ] && stty -ixon
 
 # fuck that you have new mail shit
 unset MAILCHECK
