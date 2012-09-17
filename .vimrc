@@ -55,6 +55,7 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
+  " colorscheme Tomorrow-Night
   colorscheme solarized
   set bg=dark
  endif
@@ -129,9 +130,9 @@ set visualbell             " shut the fuck up
 set autoindent             " automatic indent new lines
 set smartindent            " be smart about it
 set nowrap                 " do not wrap lines
-set softtabstop=4          " stick with convention
-set shiftwidth=4           " ..
-set tabstop=4
+set softtabstop=2          " stick with convention
+set shiftwidth=2           " ..
+set tabstop=2
 set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
@@ -290,6 +291,7 @@ map <F6> :call ToggleMouse()<CR>
 " File Types
 " ---------------------------------------------------------------------------
 
+au BufRead,BufNewFile *.py         set ft=python tw=80 ts=4 sw=4 expandtab
 au BufRead,BufNewFile *.rpdf       set ft=ruby
 au BufRead,BufNewFile *.rxls       set ft=ruby
 au BufRead,BufNewFile *.ru         set ft=ruby

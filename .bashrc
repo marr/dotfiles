@@ -172,17 +172,6 @@ prompt_color() {
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = Darwin ]; then
-    # put ports on the paths if /opt/local exists
-    test -x /opt/local -a ! -L /opt/local && {
-        PORTS=/opt/local
-
-        # setup the PATH and MANPATH
-        PATH="$PORTS/bin:$PORTS/sbin:$PATH"
-        MANPATH="$PORTS/share/man:$MANPATH"
-
-        # nice little port alias
-        alias port="sudo nice -n +18 $PORTS/bin/port"
-    }
 
     test -x /usr/pkg -a ! -L /usr/pkg && {
         PATH="/usr/pkg/sbin:/usr/pkg/bin:$PATH"
@@ -192,23 +181,30 @@ if [ "$UNAME" = Darwin ]; then
     # setup java environment. puke.
     JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
     ANT_HOME="/Developer/Java/Ant"
-    export ANT_HOME JAVA_HOME
+    NODE_PATH="/usr/local/lib/node_modules"
+    export ANT_HOME JAVA_HOME NODE_PATH
 
-    # hold jruby's hand
-    test -d /opt/jruby &&
-    JRUBY_HOME="/opt/jruby"
-    export JRUBY_HOME
 fi
 
 # ----------------------------------------------------------------------
 # ALIASES / FUNCTIONS
 # ----------------------------------------------------------------------
 
-# disk usage with human sizes and minimal depth
+alias ack='ack -ai'
+alias c='clear'
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
 alias hi='history | tail -20'
-
+# used to refresh ssh connection for tmux 
+# http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux/                                                                                                                                                                                         
+function r() {   
+  if [[ -n $TMUX ]]; then
+    NEW_SSH_AUTH_SOCK=`tmux showenv|grep ^SSH_AUTH_SOCK|cut -d = -f 2`
+    if [[ -n $NEW_SSH_AUTH_SOCK ]] && [[ -S $NEW_SSH_AUTH_SOCK ]]; then 
+      SSH_AUTH_SOCK=$NEW_SSH_AUTH_SOCK  
+    fi
+  fi
+}
 # ----------------------------------------------------------------------
 # BASH COMPLETION
 # ----------------------------------------------------------------------
@@ -364,7 +360,3 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 
 # vim: ts=4 sts=4 shiftwidth=4 expandtab
 
-alias ack='ack -ai'
-alias t='ssh -t dm-orion tmux'
-alias ta='ssh -t dm-orion tmux attach'
-alias te='ssh -t dm-orion tail -f orion/orion-ctl/logs/php_errors.log'

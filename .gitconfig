@@ -89,3 +89,5 @@
     http-clone = true
 
 # vim: noexpandtab
+[credential]
+	helper = osxkeychain
