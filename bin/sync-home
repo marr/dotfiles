@@ -21,6 +21,8 @@ for host in "$@"; do
 + /.bash_completion.d
 + /.bash_completion.d/**
 
++ /.alias
+
 + /.screenrc
 + /.gitshrc
 + /.gitconfig
