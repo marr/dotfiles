@@ -1,0 +1,20 @@
+
+# ----------------------------------------------------------------------
+# ALIASES / FUNCTIONS
+# ----------------------------------------------------------------------
+
+alias ack='ack -ai'
+alias c='clear'
+alias du1='du -h --max-depth=1'
+alias fn='find . -name'
+alias hi='history | tail -20'
+# used to refresh ssh connection for tmux 
+# http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux/                                                                                                                                                                                         
+function r() {   
+  if [[ -n $TMUX ]]; then
+    NEW_SSH_AUTH_SOCK=`tmux showenv|grep ^SSH_AUTH_SOCK|cut -d = -f 2`
+    if [[ -n $NEW_SSH_AUTH_SOCK ]] && [[ -S $NEW_SSH_AUTH_SOCK ]]; then 
+      SSH_AUTH_SOCK=$NEW_SSH_AUTH_SOCK  
+    fi
+  fi
+}
