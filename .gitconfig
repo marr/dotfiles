@@ -1,8 +1,10 @@
+[github]
+    user = marr
+
 [user]
     name = David Marr
     email = dmarr@saymedia.com
 
-[github]
 [alias]
     browse       = !hub browse
     w            = !hub browse
