@@ -7,7 +7,7 @@ chsh -s `which zsh`
 ```
 
 ```
-git clone git://github.com/marr/oh-my-zsh.git
+git clone git://github.com/marr/oh-my-zsh.git ~/.oh-my-zsh
 ```
 
 Git
