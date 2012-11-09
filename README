@@ -1,0 +1,21 @@
+Oh-My-Zsh
+=========
+Set your shell to use zsh.
+
+```
+chsh -s `which zsh`
+```
+
+```
+git clone git://github.com/marr/oh-my-zsh.git
+```
+
+Git
+===
+Enter your name and email
+
+```
+vim .gitconfig
+```
+
+
