@@ -3,7 +3,6 @@
 # ALIASES / FUNCTIONS
 # ----------------------------------------------------------------------
 
-alias a='ssh a'
 alias ack='ack -ai'
 alias c='clear'
 alias st='git status'
@@ -11,6 +10,8 @@ alias du1='du -h --max-depth=1'
 alias fn='find . -name'
 alias hi='history | tail -20'
 alias ll="ls -l"
+alias la='ls -ah'
+alias lol='git lol' #defined in .gitconfig
 alias l.="ls -d .*"
 alias n='git commit --amend'
 # used to refresh ssh connection for tmux 

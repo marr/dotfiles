@@ -18,4 +18,16 @@ Enter your name and email
 vim .gitconfig
 ```
 
+Some of my more opinioned settings are in ```.zlogin```. I source a ```.shenv``` file
+thats not in git, as its machine-specific in case you want to put in some
+environment specific stuff. 
+
+TODO
+====
+Test if .shenv exists before trying to source to make a more portable install.
+
+Other assumptions I make in ```.zlogin``` include ```rvm``` being installed and a
+local clone of https://github.com/robbyrussell/oh-my-zsh.
+
+Plugins for zsh I use are git, osx, node, brew, github.
 
