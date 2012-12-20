@@ -21,5 +21,5 @@ plugins=(git osx node brew github)
 source $HOME/.alias
 source $HOME/.shenv
 source $ZSH/oh-my-zsh.sh
-export PATH=$HOME/bin:/usr/local/share/npm/bin:$PATH
+export PATH=$HOME/bin:./node_modules/.bin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

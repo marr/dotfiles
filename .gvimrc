@@ -18,7 +18,7 @@ set ch=4
 " set noguipty
 
 " put the * register on the system clipboard
-set clipboard+=unnamed
+set clipboard=unnamed
 
 " -----------------------------------------------------------
 "  TABS
