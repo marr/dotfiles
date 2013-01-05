@@ -15,21 +15,12 @@ for host in "$@"; do
     echo "sync: $host"
     rsync -avz --include-from=- --exclude='*' ./ "${host}:" <<FILES
 + /.inputrc
-+ /.bashrc
-+ /.dircolors
-+ /.bash_completion
-+ /.bash_completion.d
-+ /.bash_completion.d/**
-
 + /.alias
-
 + /.screenrc
-+ /.gitshrc
-+ /.gitconfig
 + /.tmux.conf
-
 + /.vimrc
 + /.gvimrc
++ /.zshrc
 + /.vim
 - /.vim/sessions
 - /.vim/plugin/netrwPlugin.vim
@@ -40,24 +31,15 @@ for host in "$@"; do
 + /.vim/backup
 - /.vim/backup/**
 + /.vim/**
-
++ .zlogin
++ .oh-my-zsh
++ .oh-my-zsh/**
 + /.irssi
 + /.irssi/**
 
 + /bin
 + /bin/ack
 + /bin/lgrep
-+ /bin/git-big-object-report
-+ /bin/git-cut-branch
-+ /bin/git-find-object
-+ /bin/git-grab
-+ /bin/git-ls-object-refs
-+ /bin/git-ignore
-+ /bin/git-object-deflate
-+ /bin/git-push-log
-+ /bin/git-sh
-+ /bin/git-incoming
-+ /bin/git-outgoing
 + /bin/gzball
 + /bin/headers
 + /bin/markdown

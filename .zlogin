@@ -19,7 +19,7 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git osx node brew github)
 source $HOME/.alias
-source $HOME/.shenv
+source $HOME/.shenv #Define ZSH here and machine-specific aliases. Sync aliases with sync-home.
 source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/bin:./node_modules/.bin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
