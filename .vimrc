@@ -55,7 +55,6 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
-  " colorscheme Tomorrow-Night
   colorscheme solarized
   set bg=dark
  endif
@@ -136,7 +135,7 @@ set tabstop=2
 set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
-set textwidth=80           " wrap at 80 chars by default
+set textwidth=0           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
 
 " ----------------------------------------------------------------------------
@@ -317,6 +316,8 @@ au BufNewFile,BufRead *.mustache        setf mustache
 
 let g:manpageview_pgm= 'man -P "/usr/bin/less -is"'
 let $MANPAGER = '/usr/bin/less -is'
+
+python from powerline.ext.vim import source_plugin; source_plugin()
 
 " --------------------------------------------------------------------------
 " rails.vim
