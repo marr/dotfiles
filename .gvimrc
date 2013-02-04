@@ -4,12 +4,11 @@
 "
 winpos 0 0
 colorscheme solarized 
-"set background=light
 
-"set gfn=DejaVu\ Sans\ Mono:h13
-set gfn=Consolas:h13
-set anti               " antialiasing
-set guioptions=gemc
+set gfn=Consolas:h14
+set anti              " antialiasing
+set transparency=5    " set transparent window
+set guioptions=egmrt  " hide the gui menubar
 set columns=100
 set lines=65
 set ch=4
