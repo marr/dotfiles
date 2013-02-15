@@ -17,7 +17,8 @@ set listchars=trail:.,tab:▸\ ,eol:⤦   " line endings and trailing whitespace
 " ----------------------------------------------------------------------------
 
 let mapleader = ","
-nmap <leader>l :set list!<CR>
+"nmap <leader>l :set list!<CR>
+"nnoremap <leader>l :ls<CR>:b<space>
 
 "-------------------------------------------------------
 " STATUSBAR

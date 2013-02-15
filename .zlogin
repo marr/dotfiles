@@ -14,11 +14,15 @@
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
+#
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx node brew github)
+plugins=(git osx node brew github python virtualenvwrapper)
+export PATH=$HOME/bin:./node_modules/.bin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
 source $HOME/.alias
 source $HOME/.shenv #Not copied with sync-home
+source /usr/local/share/python/virtualenvwrapper.sh
 source $ZSH/oh-my-zsh.sh
-export PATH=$HOME/bin:./node_modules/.bin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

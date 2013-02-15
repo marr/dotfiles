@@ -43,7 +43,6 @@
     whitespace = space-before-tab, trailing-space
     excludesfile = *
     editor = vim
-    autocrlf = input
     quotepath = false
 
 [help]

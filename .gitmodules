@@ -13,3 +13,9 @@
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule ".vim/bundle/vim-buffalo"]
+	path = .vim/bundle/vim-buffalo
+	url = https://github.com/Raimondi/vim-buffalo
+[submodule ".vim/bundle/vimple"]
+	path = .vim/vimple
+	url = https://github.com/dahu/vimple.git
