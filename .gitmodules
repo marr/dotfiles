@@ -19,3 +19,6 @@
 [submodule ".vim/bundle/vimple"]
 	path = .vim/vimple
 	url = https://github.com/dahu/vimple.git
+[submodule ".vim/bundle/vim-gitgutter"]
+	path = .vim/bundle/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
