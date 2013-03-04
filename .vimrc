@@ -318,7 +318,7 @@ au BufNewFile,BufRead *.mustache        setf mustache
 let g:manpageview_pgm= 'man -P "/usr/bin/less -is"'
 let $MANPAGER = '/usr/bin/less -is'
 
-python from powerline.ext.vim import source_plugin; source_plugin()
+set rtp+=$HOME/powerline/powerline/bindings/vim
 
 " --------------------------------------------------------------------------
 " rails.vim

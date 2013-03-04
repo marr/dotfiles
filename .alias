@@ -25,3 +25,4 @@ function r() {
   fi
 }
 alias graphite="gunicorn_django -b 0.0.0.0:3000 /opt/graphite/webapp/graphite/"
+alias ir="irssi"

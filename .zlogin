@@ -23,6 +23,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source $HOME/.alias
 source $HOME/.shenv #Not copied with sync-home
-source /usr/local/share/python/virtualenvwrapper.sh
+source virtualenvwrapper.sh
 source $ZSH/oh-my-zsh.sh
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

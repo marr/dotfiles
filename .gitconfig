@@ -41,7 +41,7 @@
     filemode = true
     logallrefupdates = true
     whitespace = space-before-tab, trailing-space
-    excludesfile = *
+    excludesfile = /opt/boxen/config/git/gitignore
     editor = vim
     quotepath = false
 
@@ -90,5 +90,6 @@
     http-clone = true
 
 # vim: noexpandtab
+    protocol = https
 [credential]
-	helper = osxkeychain
+	helper = /opt/boxen/bin/boxen-git-credential
