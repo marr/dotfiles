@@ -29,7 +29,7 @@ syntax enable
 
 " vim-project
 call project#rc("~/Projects")
-Project '../src', 'api'
+Project '../src', 'Src'
 
 " Styling
 if has("gui_running")
