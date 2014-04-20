@@ -29,9 +29,7 @@ syntax enable
 
 " vim-project
 call project#rc("~/Projects")
-Project 'ct/crowdtilt-internal-api', 'api'
-Project 'ct/crowdtilt-public-site', 'public site'
-Project '../src/jquery-validation'
+Project '../src', 'api'
 
 " Styling
 if has("gui_running")
@@ -78,7 +76,7 @@ vnoremap <Leader>av :<C-u>call <SID>VAck()<CR>:exe "Ack! ".@z.""<CR>
 " Ack for word under cursor
 nnoremap <Leader>av :Ack!<cr>
 " Open Ack
-nnoremap <Leader>ao :Ack! -i 
+nnoremap <Leader>ao :Ack! -i
 
 " Code folding with space
 nnoremap <Space> za
