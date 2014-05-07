@@ -1,16 +1,17 @@
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 # bash-completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# path 
+# path
 export PATH=$HOME/bin:$PATH
 
 # git prompt
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 source ~/.nvm/nvm.sh
 source ~/perl5/perlbrew/etc/bashrc
-source `brew --prefix`/etc/profile.d/z.sh 
+source ~/lib/z/z.sh
 source .bashrc.load
 
 alias ct='cd ~/Projects/ct'
