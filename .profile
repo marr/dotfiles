@@ -11,6 +11,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\0
 source ~/.nvm/nvm.sh
 source ~/perl5/perlbrew/etc/bashrc
 source `brew --prefix`/etc/profile.d/z.sh 
+source .bashrc.load
 
 alias ct='cd ~/Projects/ct'
 alias gcb='git checkout -b'
