@@ -1,11 +1,10 @@
 [user]
-    name = Dan F-M
-    email = danfm@nyu.edu
-
+    name = Dave Marr
+    email = dave.marr@gmail.com
 [core]
     pager = cat
     editor = vim
-	excludesfile = ~/.gitignore
+	excludesfile = /opt/boxen/config/git/gitignore
 
 [alias]
     tags = tag -l
@@ -68,3 +67,9 @@
 
 [include]
     path = ~/.gitconfig_local
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
