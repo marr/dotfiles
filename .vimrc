@@ -446,8 +446,6 @@ au InsertLeave * match ExtraWhiteSpace /\S\zs\s\+$/
 let g:manpageview_pgm= 'man -P "/usr/bin/less -is"'
 let $MANPAGER = '/usr/bin/less -is'
 
-set rtp+=$HOME/powerline/powerline/bindings/vim
-
 " make file executable
 command -nargs=* Xe !chmod +x <args>
 command! -nargs=0 Xe !chmod +x %
