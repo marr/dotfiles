@@ -1,0 +1,2 @@
+# Edit conflicts in vim and traverse with ]q and [q
+mvim -c 'call EditConflictedArgs()' $(git diff --name-only --diff-filter=U)
