@@ -7,15 +7,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 # path
-export PATH=$PATH:$HOME/bin
-
+export PATH=$HOME/bin:$PATH
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 # git prompt
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
-
-# external stuff (you will see bash errors if these arent found)
-#source $(brew --prefix nvm)/nvm.sh
-source ~/perl5/perlbrew/etc/bashrc
-source ~/lib/z/z.sh
 
 # aliases
 alias ct='cd ~/Projects/ct'
