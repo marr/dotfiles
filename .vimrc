@@ -1,3 +1,10 @@
+imap <C-S> <Esc>:w<CR>
+" ----------------------------------------------------------------------------
+" Run node and jslint per:
+" https://technotales.wordpress.com/2011/05/21/node-jslint-and-vim/
+" ----------------------------------------------------------------------------
+nmap <F4> :w<CR>:make<CR>:cw<CR>
+
 " ----------------------------------------------------------------------------
 "  Backups
 " ----------------------------------------------------------------------------
@@ -27,18 +34,22 @@ execute pathogen#infect()
 filetype plugin indent on
 syntax enable
 
+let g:project_use_nerdtree = 1
+let g:project_disable_tab_title = 1
+let g:syntastic_perl_lib_path = [ './lib' ]
+
 " vim-project
-call project#rc("~/Projects")
-Project '../src', 'Src'
+call project#rc("~")
+Project 'src/status', 'Status Library'
+Project 'projects/demo', 'Dancer + React Demo'
+Project 'projects/phormat', 'Phormat'
+Project 'projects/seedbox', 'Seedbox'
+Project 'myapp', 'Authenticated app perl Dancer'
+Project 'src/Plack', "Plack"
+Project 'src/Dancer', "Dancer"
 
 " Styling
-if has("gui_running")
-    colorscheme jellybeans
-else
-    colorscheme solarized
-    set background=dark
-    set t_Co=16
-endif
+colorscheme jellybeans
 set gfn=MonacoForPowerline:h12
 let g:airline_powerline_fonts = 1
 
@@ -68,7 +79,7 @@ function! s:VAck()
 endfunction
 
 " Pasting doesnt clobber undo chunk
-inoremap splat-v <esc>isplat-v
+"inoremap <D-v> <esc>isplat-v
 
 " Ack for visual selection
 vnoremap <Leader>av :<C-u>call <SID>VAck()<CR>:exe "Ack! ".@z.""<CR>
@@ -89,6 +100,7 @@ au BufRead,BufNewFile *.tt2 setf tt2html
 au BufRead,BufNewFile *.js.tt setf tt2js
 au BufRead,BufNewFile *.tt setf tt2html
 au BufRead,BufNewFile .jshintrc setf javascript
+au BufRead,BufNewFile *.psgi setf perl
 
 " For test files
 au BufRead,BufNewFile *.t setfiletype perl
@@ -120,3 +132,84 @@ au ColorScheme * highlight ExtraWhitespace guibg=red
 au BufEnter * match ExtraWhitespace /\S\zs\s\+$/
 au InsertEnter * match ExtraWhitespace /\S\zs\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\S\zs\s\+$/
+
+function! EditConflictFiles()
+    let filter = system('git diff --name-only --diff-filter=U')
+    let conflicted = split( filter, '\n')
+    let massaged = []
+
+    for conflict in conflicted
+        let tmp = substitute(conflict, '\_s\+', '', 'g')
+        if len( tmp ) > 0
+            call add( massaged, tmp )
+        endif
+    endfor
+
+    call ProcessConflictFiles( massaged )
+endfunction
+
+function! EditConflictedArgs()
+    call ProcessConflictFiles( argv() )
+endfunction
+
+" Experimental function to load vim with all conflicted files
+function! ProcessConflictFiles( conflictFiles )
+    " These will be conflict files to edit
+    let conflicts = []
+
+    " Read git attributes file into a string
+    let gitignore = readfile('.gitattributes')
+    let ignored = []
+    for ig in gitignore
+        " Remove any extra things like -diff (this could be improved to
+        " actually use some syntax to know which files ot ignore, like check
+        " if [1] == 'diff' ?
+        let spl = split( ig, ' ' )
+        if len( spl ) > 0
+            call add( ignored, spl[0] )
+        endif
+    endfor
+
+    " Loop over each file in the arglist (passed in to vim from bash)
+    for conflict in a:conflictFiles
+
+        " If this file is not ignored in gitattributes (this could be improved)
+        if index( ignored, conflict ) < 0
+
+            " Grep each file for the starting error marker
+            let cmd = system("grep -n '<<<<<<<' ".conflict)
+
+            " Remove the first line (grep command) and split on linebreak
+            let markers = split( cmd, '\n' )
+
+            for marker in markers
+                let spl = split( marker, ':' )
+
+                " If this line had a colon in it (otherwise it's an empty line
+                " from command output)
+                if len( spl ) == 2
+
+                    " Get the line number by removing the white space around it,
+                    " because vim is a piece of shit
+                    let line = substitute(spl[0], '\_s\+', '', 'g')
+                    
+                    " Add this file to the list with the data format for the quickfix
+                    " window
+                    call add( conflicts, {'filename': conflict, 'lnum': line, 'text': spl[1]} )
+                endif
+            endfor
+        endif
+        
+    endfor
+
+    " Set the quickfix files and open the list
+    call setqflist( conflicts )
+    execute 'copen'
+    execute 'cfirst'
+
+    " Highlight diff markers and then party until you shit
+    highlight Conflict guifg=white guibg=red
+    match Conflict /^=\{7}.*\|^>\{7}.*\|^<\{7}.*/
+    let @/ = '>>>>>>>\|=======\|<<<<<<<'
+endfunction
+
