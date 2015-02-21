@@ -1,1 +1,3 @@
 README.md skip
+.gitmodules skip
+.vim recurse
