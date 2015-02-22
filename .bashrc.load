@@ -13,17 +13,7 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 
 # aliases
-alias ct='cd ~/Projects/ct'
-alias gcb='git checkout -b'
-alias gco='git checkout'
-alias gd='git diff'
-alias gru='git fetch origin && git reset --hard @{upstream}'
-alias hgrep='history | grep'
-alias ls='ls -G'
-alias st='git status'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias deploy-staging='ssh ct "sudo -iu chef /home/chef/scripts/provision.sh staging"'
-alias sls='vagrant ssh srv1 -c "tail -f /var/log/www/{api,www}.log"'
+[ -f .alias ] && source .alias
 
 psg() {
     ps axu | grep -v grep | grep "$@" -i --color=auto;
