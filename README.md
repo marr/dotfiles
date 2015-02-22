@@ -1,8 +1,12 @@
-From: https://github.com/justone/dotfiles/wiki/Full-Documentation
+David's dotfiles
+================
 
-Adding new dotfiles to your repository can be a little tricky. Here are the commands that need to be run:
+* Clone this repo
+* `cd dotfiles`
+* `git submodule update --init`
+* `./bin/dfm install`
 
-$ cp .vimrc .dotfiles
-$ dfm install
-$ dfm add .vimrc
-$ dfm ci -m 'adding .vimrc'
+You're original dotfiles will be backed up to ~/.backup. To restore them simply
+`dfm uninstall`.
+
+Make sure to update the [user] block in .gitconfig in your forks!
