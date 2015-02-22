@@ -118,13 +118,7 @@ let g:syntastic_perl_lib_path = [ './lib' ]
 
 " vim-project
 call project#rc("~")
-Project 'src/status', 'Status Library'
-Project 'projects/demo', 'Dancer + React Demo'
-Project 'projects/phormat', 'Phormat'
-Project 'projects/seedbox', 'Seedbox'
-Project 'myapp', 'Authenticated app perl Dancer'
-Project 'src/Plack', "Plack"
-Project 'src/Dancer', "Dancer"
+Project 'phormat', 'My Library'
 
 " Styling
 colorscheme jellybeans
