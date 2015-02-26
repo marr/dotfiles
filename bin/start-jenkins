@@ -1,0 +1,3 @@
+set -x
+/opt/boxen/env.sh > /Users/dmarr/boxen.log
+/usr/bin/java -Dmail.smtp.starttls.enable=true -Dhudson.DNSMultiCast.disabled=true -jar /opt/boxen/homebrew/opt/jenkins/libexec/jenkins.war --httpListenAddress=0.0.0.0 --httpPort=8080
