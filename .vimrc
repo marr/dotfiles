@@ -104,7 +104,7 @@ set nowrap                 " do not wrap lines
 set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
-set textwidth=0           " wrap at 80 chars by default
+set textwidth=0            " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
 
 " Pathogen
@@ -115,10 +115,12 @@ syntax enable
 let g:project_use_nerdtree = 1
 let g:project_disable_tab_title = 1
 let g:syntastic_perl_lib_path = [ './lib' ]
+let g:syntastic_javascript_checkers = ['eslint']
 
 " vim-project
-call project#rc("~")
-Project 'phormat', 'My Library'
+call project#rc()
+Project '.vimrc', 'My Vim'
+"Project 'src/phormat', 'My Library'
 
 " Styling
 colorscheme jellybeans
