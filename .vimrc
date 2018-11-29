@@ -22,6 +22,7 @@ nmap <F4> :w<CR>:make<CR>:cw<CR>
 let mapleader = ","
 "nmap <leader>l :set list!<CR>
 "nnoremap <leader>l :ls<CR>:b<space>
+:map <C-j> cw<C-r>0<ESC>
 
 " ---------------------------------------------------------------------------
 "  Diff
@@ -66,9 +67,9 @@ set ignorecase
 set incsearch
 set nocompatible
 set relativenumber
-set softtabstop=4          " stick with convention
-set shiftwidth=4           " ..
-set tabstop=4
+set softtabstop=2          " stick with convention
+set shiftwidth=2           " ..
+set tabstop=2
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
@@ -123,7 +124,7 @@ Project '.vimrc', 'My Vim'
 "Project 'src/phormat', 'My Library'
 
 " Styling
-colorscheme jellybeans
+colorscheme snazzy
 set gfn=MonacoForPowerline:h12
 let g:airline_powerline_fonts = 1
 
@@ -197,6 +198,10 @@ vnoremap <Leader>av :<C-u>call <SID>VAck()<CR>:exe "Ack! ".@z.""<CR>
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
                          \ exe "normal g'\"" | endif
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " Ack for word under cursor
 nnoremap <Leader>av :Ack!<cr>
 " Open Ack
@@ -237,8 +242,13 @@ let g:LookupFile_ShowFiller = 0                  " fix menu flashiness
 let g:LookupFile_PreservePatternHistory = 1      " preserve sorted history?
 let g:LookupFile_PreserveLastPattern = 0         " start with last pattern?
 
-" Gundo tree viewer
-nnoremap <Leader>u :GundoToggle<CR>
+" undotree viewer
+nnoremap <Leader>u :UndotreeToggle<CR>
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
 nmap <unique> <silent> <D-f> <Plug>LookupFile
 imap <unique> <silent> <D-f> <C-O><Plug>LookupFile
 
@@ -426,7 +436,7 @@ au BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker=
 
 au Filetype gitcommit set tw=68  spell
 au Filetype ruby      set tw=80  ts=2
-au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
+"au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
 
 " Highlight trailing whitespace in vim on non empty lines, but not while typing in insert mode!
 highlight ExtraWhitespace ctermbg=red guibg=Brown
