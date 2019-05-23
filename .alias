@@ -40,7 +40,7 @@ alias sls='vr "tail -f /var/log/www/{www,api}.log"'
 alias slw='vr "tail -f /var/log/www/www.log"'
 alias st='git status'
 alias vbr='sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist'
-alias vc="mvim -c 'call EditConflitedArgs()' \$(git diff --name-only --diff-filter=U)"
+alias vc="mvim -c 'call EditConflitedArgs()' \$(git diff --name-only --diff-filter=U --relative)"
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # used to refresh ssh connection for tmux
