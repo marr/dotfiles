@@ -82,8 +82,8 @@
     default = simple
 
 [user]
-    name = Dave Marr
-    email = dave@turo.com
+    name = David Marr
+    email = dave@filtered.ai
 
 [sendemail]
     smtpserver = smtp.gmail.com

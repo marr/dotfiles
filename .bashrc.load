@@ -5,46 +5,50 @@ fi
 
 # path
 export CODE_PATH="$HOME/code"
+export ETC_DIR="$(brew --prefix)/etc"
 export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/bin:$CODE_PATH/ops-tools/utils:/Applications/MacVim.app/Contents/bin:$PATH"
-#export JAVA_HOME=`/usr/libexec/java_home`
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home'
+export JAVA_HOME=`/usr/libexec/java_home`
+#export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home'
+export NODE_OPTIONS=--max-old-space-size=4096
+
 # git prompt
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+export SPRING_PROFILES_ACTIVE=default,local
 
-source "/usr/local/opt/nvm/nvm.sh"
-source "/usr/local/etc/profile.d/z.sh"
-source "/Users/dmarr/.rvm/scripts/rvm"
+# scripts
+[ -s "$HOME/.alias" ] && \. "$HOME/.alias"
+[ -s "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+[ -s "$ETC_DIR/profile.d/z.sh" ] && \. "$ETC_DIR/profile.d/z.sh"
+[ -s "$ETC_DIR/bash_completion" ] && \. "$ETC_DIR/bash_completion"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-
-# aliases
-[ -f $HOME/.alias ] && source $HOME/.alias
-
-psg() {
-    ps axu | grep -v grep | grep "$@" -i --color=auto;
+clean-dunlop() {
+    find src -name web.xml -delete
+    find src -name *.class -delete
 }
 
-pullreq() {
-    [ -z $BRANCH ] && BRANCH="dev"
-    HEAD=$(git symbolic-ref HEAD 2> /dev/null)
-    [ -z $HEAD ] && return # Return if no head
-    MSG=`git log -n1 --pretty=%s`
-    CUR_BRANCH=${HEAD#refs/heads/}
+dunlop() {
+    cd $HOME/code/dunlop
+    ./gradlew migrateApplyPredeploy
+    ./gradlew build
+    java -jar build/libs/dunlop-1.0.0-dev.war -Dspring.profiles.active=default
+}
 
-    if [[ "$CUR_BRANCH" == "dev" || "$CUR_BRANCH" == "master" ]]; then
-        echo "You can't push directly to $CUR_BRANCH, thicky"
-        return
+kcuc() {
+    contexts=(`kubectl config get-contexts -o=name | sort`)
+
+    if [ -n "$1" ]; then
+        context=${contexts[$1]}
+    else
+        select context in "${contexts[@]}" "QUIT"; do
+            case $context in
+                "QUIT")
+                    return
+                    ;;
+                *)
+                    break
+            esac
+        done
     fi
-    git push origin $CUR_BRANCH
-    hub pull-request -b $BRANCH -h Crowdtilt:$CUR_BRANCH
 }
-
-#Git ProTip - Delete all local branches that have been merged into HEAD
-git_purge_local_branches() {
-    set -x
-    BRANCHES=`git branch --merged | grep -v '^*' | grep -v 'master' | grep -v 'dev' | tr -d '\n'`
-    echo "Running: git branch -d $BRANCHES"
-    git branch -d $BRANCHES
-    set +x
-}
-

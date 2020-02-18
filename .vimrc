@@ -160,7 +160,7 @@ map <F7>  :cn<CR>
 map <S-F7> :cp<CR>
 map <A-F7> :copen<CR>
 
-:nnoremap <F8> :NERDTreeToggle<CR>
+:nnoremap <leader>n :NERDTreeToggle<CR>
 
 " emacs movement keybindings in insert mode
 imap <C-a> <C-o>0
@@ -209,10 +209,12 @@ nnoremap <Leader>ao :Ack! -i
 " Start NERDTree when vim is opened
 " autocmd VimEnter * NERDTree
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 " Code folding with space
 nnoremap <Space> za
 " don't use cindent for javascript
-autocmd FileType javascript setlocal nocindent
 
 " Open multiplely selected files in a tab by default
 let g:ctrlp_open_multi = '10t'
@@ -297,6 +299,8 @@ map ,dt :tabnew %:h/<CR>
 
 " open gf under cursor in new tab
 map ,f :tabnew <cfile><CR>
+
+autocmd Filetype html,xml,xsl,php,smarty,htmldjango imap <S-CR> <C-R>=GetCloseTag()<CR>
 
 function! Browser ()
     let line0 = getline (".")
@@ -436,7 +440,7 @@ au BufRead,BufNewFile *.css,*.scss,*.less setlocal foldmethod=marker foldmarker=
 
 au Filetype gitcommit set tw=68  spell
 au Filetype ruby      set tw=80  ts=2
-"au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
+au Filetype html,xml,xsl,php,smarty,htmldjango imap <S-CR> <C-R>=GetCloseTag()<CR>
 
 " Highlight trailing whitespace in vim on non empty lines, but not while typing in insert mode!
 highlight ExtraWhitespace ctermbg=red guibg=Brown

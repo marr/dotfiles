@@ -1,7 +1,8 @@
 # ----------------------------------------------------------------------
 # ALIASES
 # ----------------------------------------------------------------------
-alias al='ssh -t -D 8383 pm tmux attach'
+alias al='ssh -t -D 8383 pm tmux-next attach'
+alias be='bundle exec'
 alias c='clear'
 alias ct='cd ~/Projects/ct'
 alias deploy-prod='ssh ct "sudo -iu chef /home/chef/scripts/provision.sh production"'
@@ -15,6 +16,7 @@ alias gca='git commit --amend --no-edit'
 alias gcb='git checkout -b'
 alias gco='git checkout'
 alias gd='git diff'
+alias gds='git diff --stat'
 alias gdc='git diff --cached'
 alias git='hub'
 alias gl="git log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -29,7 +31,7 @@ alias ll='ls -l'
 alias lol='git lol' #defined in .gitconfig
 alias ls='ls -G'
 alias ls='ls -aG'
-alias n='git commit --amend'
+#alias n='git commit --amen'
 alias rs='vr "sudo ubic restart -f"'
 alias rsa='vr "sudo ubic restart -f starman_api"'
 alias rsr='vr "sudo restart reify"'
@@ -38,6 +40,7 @@ alias rv='git remote -v'
 alias sla='vr "tail -f /var/log/www/api.log"'
 alias sls='vr "tail -f /var/log/www/{www,api}.log"'
 alias slw='vr "tail -f /var/log/www/www.log"'
+alias s='npm i -S'
 alias st='git status'
 alias vbr='sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist'
 alias vc="mvim -c 'call EditConflitedArgs()' \$(git diff --name-only --diff-filter=U --relative)"
