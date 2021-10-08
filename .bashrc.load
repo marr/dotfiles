@@ -21,7 +21,7 @@ export SPRING_PROFILES_ACTIVE=default,local
 [ -s "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 [ -s "$ETC_DIR/profile.d/z.sh" ] && \. "$ETC_DIR/profile.d/z.sh"
 [ -s "$ETC_DIR/bash_completion" ] && \. "$ETC_DIR/bash_completion"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
 clean-dunlop() {
     find src -name web.xml -delete
