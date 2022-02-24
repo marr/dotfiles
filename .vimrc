@@ -67,9 +67,9 @@ set ignorecase
 set incsearch
 set nocompatible
 set relativenumber
-set softtabstop=2          " stick with convention
-set shiftwidth=2           " ..
-set tabstop=2
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
