@@ -3,9 +3,11 @@
 
 # path
 export CODE_PATH="$HOME/code"
-export ETC_DIR="$(brew --prefix)/etc"
+export BREW_DIR="$(brew --prefix)"
+export ETC_DIR="$BREW_DIR/etc"
+export BIN_DIR="$BREW_DIR/bin"
 export NVM_DIR="$HOME/.nvm"
-export PATH="$HOME/bin:$CODE_PATH/ops-tools/utils:/Applications/MacVim.app/Contents/bin:$PATH"
+export PATH="$HOME/bin:/Applications/MacVim.app/Contents/bin:$PATH"
 export JAVA_HOME=`/usr/libexec/java_home`
 #export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home'
 export NODE_OPTIONS=--max-old-space-size=4096
@@ -16,22 +18,11 @@ export SPRING_PROFILES_ACTIVE=default,local
 
 # scripts
 [ -s "$HOME/.alias" ] && \. "$HOME/.alias"
-[ -s "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+[ -s "$HOME/.bashrc" ] && \. "$HOME/.bashrc"
 [ -s "$ETC_DIR/profile.d/z.sh" ] && \. "$ETC_DIR/profile.d/z.sh"
 [ -s "$ETC_DIR/bash_completion" ] && \. "$ETC_DIR/bash_completion"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
-
-clean-dunlop() {
-    find src -name web.xml -delete
-    find src -name *.class -delete
-}
-
-dunlop() {
-    cd $HOME/code/dunlop
-    ./gradlew migrateApplyPredeploy
-    ./gradlew build
-    java -jar build/libs/dunlop-1.0.0-dev.war -Dspring.profiles.active=default
-}
+[ -s "$BREW_DIR/opt/nvm/nvm.sh" ] && \. "$BREW_DIR/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm"
 
 kcuc() {
     contexts=(`kubectl config get-contexts -o=name | sort`)

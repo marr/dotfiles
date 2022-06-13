@@ -83,7 +83,7 @@
 
 [user]
     name = David Marr
-    email = dave@filtered.ai
+    email = david.marr@contextlabs.com
 
 [sendemail]
     smtpserver = smtp.gmail.com
