@@ -125,7 +125,6 @@ Project '.vimrc', 'My Vim'
 
 " Styling
 colorscheme snazzy
-set gfn=MonacoForPowerline:h12
 let g:airline_powerline_fonts = 1
 
 " Leader
