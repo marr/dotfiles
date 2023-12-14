@@ -4,45 +4,36 @@
 alias al='ssh -t -D 8383 pm tmux-next attach'
 alias be='bundle exec'
 alias c='clear'
-alias ct='cd ~/Projects/ct'
-alias deploy-prod='ssh ct "sudo -iu chef /home/chef/scripts/provision.sh production"'
-alias deploy-staging='ssh ct "sudo -iu chef /home/chef/scripts/provision.sh staging"'
-alias deploys="gl --no-merges upstream/master..upstream/dev"
+alias cat='bat'
 alias du1='du -h --max-depth=1'
 alias fm='vr "echo flush_all | nc localhost 11211"'
 alias fn='find . -name'
-alias g='hub'
 alias gca='git commit --amend --no-edit'
 alias gcb='git checkout -b'
 alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --stat'
 alias gdc='git diff --cached'
-alias gl="git log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gf='git fetch'
+alias gl="git log"
 alias glo='git lol'
 alias grph='git rev-parse HEAD'
 alias gru='git fetch origin && git reset --hard @{upstream}'
 alias hgrep='history | grep'
-alias hi='history | tail -20'
+alias hi='history 20'
 alias l.="ls -d .*"
 alias la='ls -ah'
+alias less='less -XR'
 alias ll='ls -l'
 alias lol='git lol' #defined in .gitconfig
-alias ls='ls -G'
 alias ls='ls -aG'
-alias rs='vr "sudo ubic restart -f"'
-alias rsa='vr "sudo ubic restart -f starman_api"'
-alias rsr='vr "sudo restart reify"'
-alias rsw='vr "sudo ubic restart -f starman_www"'
 alias rv='git remote -v'
-alias sla='vr "tail -f /var/log/www/api.log"'
-alias sls='vr "tail -f /var/log/www/{www,api}.log"'
-alias slw='vr "tail -f /var/log/www/www.log"'
 alias st='git status'
+alias ts='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
+alias ui='cd ~/code/cxl-ui-components'
 alias us='git submodule update --recursive'
-alias vbr='sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist'
 alias vc="mvim -c 'call EditConflitedArgs()' \$(git diff --name-only --diff-filter=U --relative)"
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 
 # used to refresh ssh connection for tmux
 # http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux/
@@ -53,4 +44,13 @@ function r() {
       SSH_AUTH_SOCK=$NEW_SSH_AUTH_SOCK
     fi
   fi
+}
+
+function link-packages() {
+  for dir in {nuxt,vuetify}/packages/*; do
+    # echo "$dir";
+    cd "$dir";
+    npm link;
+    cd -;
+  done
 }

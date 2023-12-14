@@ -5,25 +5,38 @@
 export CODE_PATH="$HOME/code"
 export BREW_DIR="$(brew --prefix)"
 export ETC_DIR="$BREW_DIR/etc"
-export BIN_DIR="$BREW_DIR/bin"
 export NVM_DIR="$HOME/.nvm"
-export PATH="$HOME/bin:/Applications/MacVim.app/Contents/bin:$PATH"
+export BUN_INSTALL="$HOME/.bun"
 export JAVA_HOME=`/usr/libexec/java_home`
 #export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home'
-export NODE_OPTIONS=--max-old-space-size=4096
-
-# git prompt
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$HOME/bin:$BUN_INSTALL/bin:$PNPM_HOME:$BREW_DIR/bin:$BREW_DIR/opt/sqlite/bin:$BREW_DIR/sbin:/Applications/MacVim.app/Contents/bin:$PATH"
+export PATH="$HOME/bin/git-filter-repo-2.38.0:$PATH"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[1;31m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+#export PYENV_ROOT=~/.pyenv-i386
 export SPRING_PROFILES_ACTIVE=default,local
 
 # scripts
+eval "$(pyenv init -)"
 [ -s "$HOME/.alias" ] && \. "$HOME/.alias"
 [ -s "$HOME/.bashrc" ] && \. "$HOME/.bashrc"
 [ -s "$ETC_DIR/profile.d/z.sh" ] && \. "$ETC_DIR/profile.d/z.sh"
 [ -s "$ETC_DIR/bash_completion" ] && \. "$ETC_DIR/bash_completion"
 [ -s "$BREW_DIR/opt/nvm/nvm.sh" ] && \. "$BREW_DIR/opt/nvm/nvm.sh" # This loads nvm
 [ -s "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm"
+if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 
+# history
+# don't put duplicate lines or lines starting with space in the history
+HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
+shopt -s histappend
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# helpers
 kcuc() {
     contexts=(`kubectl config get-contexts -o=name | sort`)
 
@@ -40,4 +53,13 @@ kcuc() {
             esac
         done
     fi
+}
+
+lnpm() {
+    for dir in packages/*
+    do
+        cd "$dir";
+        npm link;
+        cd -
+    done
 }

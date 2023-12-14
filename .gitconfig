@@ -24,6 +24,7 @@
     s            = status -sb -uno --ignore-submodules=untracked
     st           = status
     sa           = status -sb --ignore-submodules=untracked
+	ac = commit -am
 
 [apply]
     whitespace = nowarn
@@ -67,9 +68,22 @@
 [diff]
     renames = copies
     mnemonicprefix = true
+    tool = vscode
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = vim
+
+[mergetool "vim"]
+  cmd = command vim $MERGED
 
 [format]
-    pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+    pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cd)%Creset
+
+[log]
+    date = human
 
 [help]
     browser = open
