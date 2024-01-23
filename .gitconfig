@@ -1,74 +1,75 @@
 [alias]
-    browse       = !hub browse
-    w            = !hub browse
-    compare      = !hub compare
-    cb           = !git-cut-branch
-    sh           = !git-sh
-    grab         = !git-grab
-    thanks       = !git-thanks
-    track        = !git-track
-    ll           = log --pretty=oneline --abbrev-commit --max-count=15
-    lol          = log --oneline --graph --decorate --max-count=20
-    wip          = !git add -u && git commit -m ...
-    wipc         = !date >> WIP && git add WIP && git commit -m ...
-    fp           = format-patch --stdout
-    ci           = commit
-    co           = checkout
-    x            = checkout HEAD
-    bv           = !git branch --color -v | cut -c1-100
-    incoming     = !git-incoming
-    in           = !git-incoming
-    local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
-    outgoing     = !git-outgoing
-    out          = !git-outgoing
-    s            = status -sb -uno --ignore-submodules=untracked
-    st           = status
-    sa           = status -sb --ignore-submodules=untracked
-	ac = commit -am
+  browse       = !hub browse
+  w            = !hub browse
+  compare      = !hub compare
+  cb           = !git-cut-branch
+  sh           = !git-sh
+  grab         = !git-grab
+  thanks       = !git-thanks
+  track        = !git-track
+  ll           = log --pretty=oneline --abbrev-commit --max-count=15
+  lol          = log --oneline --graph --decorate --max-count=20
+  wip          = !git add -u && git commit -m ...
+  wipc         = !date >> WIP && git add WIP && git commit -m ...
+  fp           = format-patch --stdout
+  ci           = commit
+  co           = checkout
+  x            = checkout HEAD
+  bv           = !git branch --color -v | cut -c1-100
+  incoming     = !git-incoming
+  in           = !git-incoming
+  local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
+  outgoing     = !git-outgoing
+  out          = !git-outgoing
+  s            = status -sb -uno --ignore-submodules=untracked
+  st           = status
+  sa           = status -sb --ignore-submodules=untracked
+  ac           = commit -am
+  ap           = add -p
 
 [apply]
-    whitespace = nowarn
+  whitespace = nowarn
 
 [branch]
-    autosetupmerge = true
+  autosetupmerge = true
 [color]
-    ui = auto
-    status = auto
-    branch = auto
+  ui = auto
+  status = auto
+  branch = auto
 
 [color "diff"]
-    meta = blue bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+  meta = blue bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow bold
-    remote = green bold
-    plain = red bold
+  current = yellow reverse
+  local = yellow bold
+  remote = green bold
+  plain = red bold
 
 [color "status"]
-    added = yellow
-    changed = green bold
-    untracked = blue bold
-    ui = auto
+  added = yellow
+  changed = green bold
+  untracked = blue bold
+  ui = auto
 
 [core]
-    filemode = true
-    logallrefupdates = true
-    whitespace = space-before-tab, trailing-space
-    excludesfile = /opt/boxen/config/git/gitignore
-    editor = vim
-    quotepath = false
+  filemode = true
+  logallrefupdates = true
+  whitespace = space-before-tab, trailing-space
+  excludesfile = /opt/boxen/config/git/gitignore
+  editor = vim
+  quotepath = false
 
 [credential]
     ;helper = /opt/boxen/bin/boxen-git-credential
 
 [diff]
-    renames = copies
-    mnemonicprefix = true
-    tool = vscode
+  renames = copies
+  mnemonicprefix = true
+  tool = vscode
 
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
@@ -80,36 +81,36 @@
   cmd = command vim $MERGED
 
 [format]
-    pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cd)%Creset
+  pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cd)%Creset
 
 [log]
-    date = human
+  date = human
 
 [help]
-    browser = open
+  browser = open
 
 [hub]
-    http-clone = true
-    protocol = https
+  http-clone = true
+  protocol = https
 
 [push]
-    default = simple
+  default = simple
 
 [user]
-    name = David Marr
-    email = david.marr@contextlabs.com
+  name = David Marr
+  email = david.marr@contextlabs.com
 
 [sendemail]
-    smtpserver = smtp.gmail.com
-    smtpserverport = 587
-    smtpencryption = tls
-    smtpuser = dave.marr@gmail.com
+  smtpserver = smtp.gmail.com
+  smtpserverport = 587
+  smtpencryption = tls
+  smtpuser = dave.marr@gmail.com
 
 # vim: noexpandtab
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 [init]
-	defaultBranch = main
+  defaultBranch = main
